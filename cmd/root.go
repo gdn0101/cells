@@ -299,7 +299,11 @@ func initLogLevel() {
 	}
 
 	// Init log level
-	logLevel := viper.GetString("logs_level")
+	logLevel := viper.GetString("log")
+	if logLevel == "" { // Backward compatibility
+		logLevel = viper.GetString("logs_level")
+	}
+
 	logJson := viper.GetBool("log_json")
 	common.LogToFile = viper.GetBool("log_to_file")
 
